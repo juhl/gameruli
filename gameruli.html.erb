@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>루리웹 게임 공략 게시판</title>
+
+<style type="text/css">
+* {font-size: 9pt;}
+h1 {font-size: 15pt;}
+table {table-layout: fixed;}
+tr {vertical-align: top;}
+td {text-align: center; width:160px; height:150px; padding-top:10px;}
+img {border: 2px #333333 outset;}
+td:hover {background-color: #99DDFF;}
+a:link {text-decoration: none; color: #333333;}
+a:visited {text-decoration: none; color: #333333;}
+a:active {text-decoration: none; color: #333333;}
+</style>
+
+<script type="text/javascript">
+function onLoad() {
+}
+</script>
+</head>
+
+<body onLoad="onLoad()">
+
+<form method="get" action="gameruli.rb">
+<select name="category" onChange="submit()">
+<option>게임 플랫폼을 선택하세요</option>
+<% $game_category_hash.each do |key, value| %>
+  <option value="<%= key %>" <%= selected_category == key ? "selected" : "" %>><%= value %></option>
+<% end %>
+</select></form><br>
+
+<table><tr>
+<% td = 0 %>
+
+<% $game_titles.each do |x| %>
+  <% if td == 7 %>
+    </tr><tr>
+    <% td = 0 %>
+  <% end %>
+
+  <td>
+    <a href="<%=x.link%>"><img src="<%=x.imgsrc%>"><br><%= x.name %></a>
+  </td>
+
+  <% td += 1 %>
+<% end %>
+
+</tr></table>
+</body></html>
+
+
